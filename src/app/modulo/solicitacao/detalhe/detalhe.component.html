@@ -1,0 +1,47 @@
+<p-card>
+  <div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <strong>Detalhe da Solicitação</strong>
+        </ng-template>
+
+        <div class="p-field">
+          <label> <strong>Id:</strong> </label>
+          <label>{{ dataSistema.id }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Descrição:</strong> </label>
+          <label>{{ dataSistema.descricao }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Cliente:</strong> </label>
+          <label>{{ dataSistema.cliente.nome }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Sistema:</strong> </label>
+          <label>{{ dataSistema.sistema.nome }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Usuário:</strong> </label>
+          <label>{{ dataSistema.userName }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Status Atual:</strong> </label>
+          <label>{{ dataSistema.statusAtual }}</label>
+        </div>
+
+
+        <div class="p-col-12">
+          <button pButton type="button" icon="pi pi-backward" class="p-button-raised p-button-primary"
+            (click)="voltar()" label="Voltar"></button>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</p-card>

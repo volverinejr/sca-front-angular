@@ -1,0 +1,54 @@
+<p-card>
+  <div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <strong>Detalhe do Usuário</strong>
+        </ng-template>
+
+        <div class="p-field">
+          <label> <strong>Id:</strong> </label>
+          <label>{{ dataSistema.id }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Login:</strong> </label>
+          <label>{{ dataSistema.userName }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Nome Compelto:</strong> </label>
+          <label>{{ dataSistema.fullName }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Email:</strong> </label>
+          <label>{{ dataSistema.email }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Cliente:</strong> </label>
+          <label>{{ dataSistema.cliente?.nome }}</label>
+        </div>
+
+
+        <div class="p-field">
+          <label> <strong>Ver solicitações de outros usuários:</strong> </label>
+          <label>{{ dataSistema.verOutraSolicitacao | yesNo }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Ativo:</strong> </label>
+          <label>{{ dataSistema.enabled | yesNo }}</label>
+        </div>
+
+        <div class="p-col-12">
+          <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-trash'" label="Excluir"
+            class="p-button-raised p-button-danger" (click)="excluir()"></button>
+          <button pButton type="button" icon="pi pi-backward" class="p-button-raised p-button-primary"
+            (click)="voltar()" label="Voltar"></button>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</p-card>

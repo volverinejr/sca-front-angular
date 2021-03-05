@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
         label: 'Cadastro Base',
         items: [
           { label: 'Time', icon: 'pi pi-sitemap', command: () => { this.clicked('time'); } },
-          { label: 'Fase', icon: 'pi pi-list', command: () => { this.clicked('fase'); } },
+          { label: 'Fase', icon: 'pi pi-tag', command: () => { this.clicked('fase'); } },
           { label: 'Sistema', icon: 'pi pi-th-large', command: () => { this.clicked('sistema'); } },
           {
             separator: true

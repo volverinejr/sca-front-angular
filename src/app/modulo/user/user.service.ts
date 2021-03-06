@@ -70,7 +70,7 @@ export class UserService {
     return this.http.delete(`${env.API_TICKET}${this.pathBase}/${id}`).pipe(take(1));
   }
 
-
+  // USER X SISTEMAS
   public FindBySistemasDoUser(id, pagina, qtd, campo, ordem) {
     if (ordem == "-1") {
       campo = '-' + campo;
@@ -99,7 +99,7 @@ export class UserService {
     return this.http.delete(`${env.API_TICKET}${this.pathBase}/${userId}/sistema/${clienteSistemaId}`).pipe(take(1));
   }
 
-
+  // USER X PERMISSÃO
   public findByPermissaoDoUser(id, pagina, qtd, campo, ordem) {
     if (ordem == "-1") {
       campo = '-' + campo;
@@ -128,6 +128,34 @@ export class UserService {
     return this.http.delete(`${env.API_TICKET}${this.pathBase}/${userId}/permissao/${permissaoId}`).pipe(take(1));
   }
 
+  // USER X TIME
+  public findByTimeDoUser(id, pagina, qtd, campo, ordem) {
+    if (ordem == "-1") {
+      campo = '-' + campo;
+    }
+
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('page', pagina);
+    httpParams = httpParams.set('size', qtd);
+    httpParams = httpParams.set('sort', campo);
+
+
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${id}/time`, {
+      params: httpParams
+    })
+      .pipe(
+        take(1),
+      );
+  }
+
+
+  public addTimeAoUser(model: any) {
+    return this.http.post(`${env.API_TICKET}${this.pathBase}/time`, model).pipe(take(1));
+  }
+
+  public deleteTimeDoUser(userId: number, timeId: number) {
+    return this.http.delete(`${env.API_TICKET}${this.pathBase}/${userId}/time/${timeId}`).pipe(take(1));
+  }
 
 
 }

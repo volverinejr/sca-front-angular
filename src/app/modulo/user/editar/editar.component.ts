@@ -126,7 +126,7 @@ export class EditarComponent implements OnInit {
             this.form.get("cliente").setValue(this.clientes.find(cli => cli.nome === response.cliente.nome));
           },
           (error: any) => {
-            console.log(error.error.message);
+            this.errorMensagem.mostrarError('', error);
           }
         );
       }

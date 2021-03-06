@@ -9,6 +9,7 @@ import { ListarComponent } from './listar/listar.component';
 import { NovoComponent } from './novo/novo.component';
 import { PermissaoListarComponent } from './permissao-listar/permissao-listar.component';
 import { SistemaListarComponent } from './sistema-listar/sistema-listar.component';
+import { TimeListarComponent } from './time-listar/time-listar.component';
 
 
 const Routes: Routes = [
@@ -35,6 +36,11 @@ const Routes: Routes = [
   },
   {
     path: ':id/permissao', component: PermissaoListarComponent,
+    canLoad: [UserEditarGuard],
+    canActivate: [UserEditarGuard],
+  },
+  {
+    path: ':id/time', component: TimeListarComponent,
     canLoad: [UserEditarGuard],
     canActivate: [UserEditarGuard],
   },

@@ -1,4 +1,3 @@
-<br />
 <p-card>
   <!-- GRID -->
   <p-table
@@ -24,7 +23,7 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex">
-        <span>Lista dos Usuários</span>
+        <p-badge size="large" severity="danger" value="{{ nomeUser }} X Times"></p-badge>
         <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
@@ -43,15 +42,10 @@
         <th width="10%" pResizableColumn pSortableColumn="id">
           #<p-sortIcon field="id"></p-sortIcon>
         </th>
-        <th pResizableColumn pSortableColumn="userName">
-          User <p-sortIcon field="userName"></p-sortIcon>
+        <th pResizableColumn pSortableColumn="nome">
+          Nome <p-sortIcon field="nome"></p-sortIcon>
         </th>
-        <th pResizableColumn pSortableColumn="fullName">
-          Nome completo <p-sortIcon field="fullName"></p-sortIcon>
-        </th>
-        <th width="15%">Ver outras solicitações</th>
-        <th width="8%">Ativo</th>
-        <th width="17%"><i class="pi pi-cog"></i></th>
+        <th width="10%"><i class="pi pi-cog"></i></th>
       </tr>
     </ng-template>
 
@@ -59,76 +53,40 @@
     <ng-template pTemplate="body" let-linha>
       <tr [pSelectableRow]="linha">
         <td>{{ linha.id }}</td>
-        <td>{{ linha.userName }}</td>
-        <td>{{ linha.fullName }}</td>
-        <td>{{ linha.verOutraSolicitacao | yesNo }}</td>
-        <td>{{ linha.enabled | yesNo }}</td>
+        <td>{{ linha.nome }}</td>
         <td>
           <button
+          *ngIf="linha.cadastrado=='0'"
             type="button"
-            (click)="detalhe(linha.id)"
+            (click)="add(linha.id)"
             pButton
-            icon="pi pi-eye"
+            icon="pi pi-plus"
             class="p-button-raised p-button-rounded p-button-help"
-            pTooltip="detalhe"
+            pTooltip="add sistemas ao cliente"
           ></button>
 
           <button
+          *ngIf="linha.cadastrado!='0'"
             type="button"
-            (click)="editar(linha.id)"
+            (click)="remover(linha.id)"
             pButton
-            icon="pi pi-pencil"
+            icon="pi pi-minus"
             class="p-button-raised p-button-rounded p-button-warning"
-            pTooltip="editar"
+            pTooltip="remover sistemas do cliente"
           ></button>
-
-          <button
-            type="button"
-            (click)="sistemasDoUser(linha.id)"
-            pButton
-            icon="pi pi-share-alt"
-            class="p-button-sm p-button-raised p-button-rounded p-button-secondary"
-            pTooltip="add/remover sistemas ao usuário"
-          ></button>
-
-          <button
-            type="button"
-            (click)="permissaoDoUser(linha.id)"
-            pButton
-            icon="pi pi-key"
-            class="p-button-sm p-button-raised p-button-rounded p-button-success"
-            pTooltip="add/remover permissão ao usuário"
-          ></button>
-
-          <button
-            type="button"
-            (click)="timeDoUser(linha.id)"
-            pButton
-            icon="pi pi-sitemap"
-            class="p-button-sm p-button-raised p-button-rounded p-button-info"
-            pTooltip="add/remover Time ao usuário"
-          ></button>
-
         </td>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="paginatorleft">
-      <button
-        type="button"
-        class="p-button-raised p-button-primary"
-        pButton
-        icon="pi pi-plus-circle"
-        label="Novo"
-        (click)="novo()"
-      ></button>
+        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar"></button>
     </ng-template>
 
     <ng-template pTemplate="paginatorright"> </ng-template>
 
     <ng-template pTemplate="emptymessage" let-columns>
       <tr>
-        <td [attr.colspan]="4">
+        <td [attr.colspan]="3">
           <h4>Nenhum registro encontrado.</h4>
         </td>
       </tr>

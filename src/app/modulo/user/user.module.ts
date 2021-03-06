@@ -10,10 +10,11 @@ import { EditarComponent } from './editar/editar.component';
 import { UserRoutingModule } from './user-routing.module';
 import { SistemaListarComponent } from './sistema-listar/sistema-listar.component';
 import { PermissaoListarComponent } from './permissao-listar/permissao-listar.component';
+import { TimeListarComponent } from './time-listar/time-listar.component';
 
 
 @NgModule({
-  declarations: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent],
+  declarations: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent, TimeListarComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -21,6 +22,6 @@ import { PermissaoListarComponent } from './permissao-listar/permissao-listar.co
     AppCommonModule,
     UserRoutingModule,
   ],
-  exports: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent],
+  exports: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent, TimeListarComponent],
 })
 export class UserModule { }

@@ -95,4 +95,9 @@ export class ListarComponent implements OnInit {
     this.router.navigate(['/user/' + id + '/permissao']);
   }
 
+  timeDoUser(id: number){
+    this.router.navigate(['/user/' + id + '/time']);
+  }
+
+
 }

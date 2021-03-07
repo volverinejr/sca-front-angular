@@ -133,7 +133,6 @@ export class NovoComponent implements OnInit {
       },
       (error: any) => {
         this.errorMensagem.mostrarError('', error);
-        this.router.navigate(['']);
       }
     );
 

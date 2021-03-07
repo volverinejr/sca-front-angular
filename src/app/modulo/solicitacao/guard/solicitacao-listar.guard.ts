@@ -27,7 +27,9 @@ export class SolicitacaoListarGuard implements CanActivate, CanLoad {
       return true
     }
 
-    return false;
+    this.errormensageService.rotaNaoPermitida();
+
+    this.router.navigate(['']);
   }
 
   canActivate(

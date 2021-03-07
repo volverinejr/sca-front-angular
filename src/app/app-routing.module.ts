@@ -6,6 +6,7 @@ import { FaseListarGuard } from './modulo/fase/guard/fase-listar.guard';
 import { PermissaoListarGuard } from './modulo/permissao/guard/permissao-listar.guard';
 import { SistemaListarGuard } from './modulo/sistema/guard/sistema-listar.guard';
 import { SolicitacaoListarGuard } from './modulo/solicitacao/guard/solicitacao-listar.guard';
+import { SprintListarGuard } from './modulo/sprint/guard/sprint-listar.guard';
 import { TimeListarGuard } from './modulo/time/guard/time-listar.guard';
 import { UserListarGuard } from './modulo/user/guard/user-listar.guard';
 
@@ -59,8 +60,8 @@ const routes: Routes = [
   {
     path: 'sprint',
     loadChildren: () => import('./modulo/sprint/sprint.module').then(m => m.SprintModule),
-    canLoad: [AnaliseListarGuard],
-    canActivate: [AnaliseListarGuard],
+    canLoad: [SprintListarGuard],
+    canActivate: [SprintListarGuard],
   },
   {
     path: 'fase',

@@ -32,7 +32,7 @@
     <ng-template pTemplate="caption">
       <div class="p-d-flex">
         <span>Lista das solicitações</span>
-        <span class="p-input-icon-left p-ml-auto">
+        <!-- <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
             pInputText
@@ -40,7 +40,7 @@
             (input)="dt.filterGlobal($event.target.value, 'contains')"
             placeholder="Pesquisar"
           />
-        </span>
+        </span> -->
       </div>
     </ng-template>
 
@@ -76,7 +76,7 @@
             pButton
             icon="pi pi-plus"
             class="p-button-raised p-button-rounded p-button-help"
-            pTooltip="add sistemas ao cliente"
+            pTooltip="add solicitação à sprint"
           ></button>
 
           <button
@@ -86,7 +86,7 @@
             pButton
             icon="pi pi-minus"
             class="p-button-raised p-button-rounded p-button-warning"
-            pTooltip="remover sistemas do cliente"
+            pTooltip="remover solicitação da sprint"
           ></button>
         </td>
       </tr>

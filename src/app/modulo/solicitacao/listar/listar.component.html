@@ -10,6 +10,7 @@
     currentPageReportTemplate="{first} de {last} | Total {totalRecords} registros."
     emptymessage="Nenhum registro encontrado"
     selectionMode="single"
+    (onRowSelect)="onRowSelect($event)"
     [resizableColumns]="true"
     [rowsPerPageOptions]="[10, 25, 50]"
     totalRecords="{{ totalRecords }}"
@@ -17,7 +18,7 @@
     [lazy]="true"
     (onLazyLoad)="lazyLoad($event)"
     [lazyLoadOnInit]="false"
-    [globalFilterFields]="['id', 'nome']"
+    [globalFilterFields]="['id', 'descricao']"
     styleClass="p-datatable-striped"
     sortField="id"
     sortOrder="-1"
@@ -43,7 +44,7 @@
         <th width="10%" pResizableColumn pSortableColumn="id">
           #<p-sortIcon field="id"></p-sortIcon>
         </th>
-        <th pResizableColumn>Descrição</th>
+        <th pResizableColumn pSortableColumn="descricao">Descrição <p-sortIcon field="descricao"></p-sortIcon></th>
         <th pResizableColumn>Sistema</th>
         <th pResizableColumn>Usuário</th>
         <th width="10%">Status</th>

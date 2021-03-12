@@ -7,18 +7,18 @@ import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class SprintService {
-  private pathBase: string = "/api/sprint/v1";
+export class FabricaService {
+  private pathBase: string = "/api/fabrica/v1";
 
   constructor(
     protected http: HttpClient,
   ) { }
 
-  public novo(model: any) {
-    return this.http.post(`${env.API_TICKET}${this.pathBase}`, model).pipe(take(1));
+  public novaFase(idSprint:number, idSolicitacao:number, model: any) {
+    return this.http.post(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}`, model).pipe(take(1));
   }
 
-  public update(model: any) {
+  public updateFase(model: any) {
     return this.http.put(`${env.API_TICKET}${this.pathBase}`, model).pipe(take(1));
   }
 
@@ -36,6 +36,9 @@ export class SprintService {
       }
       else if (campo == 'nome') {
         aplicandoFiltro = '/findByNome/' + filtro
+      }
+      else if (campo == 'descricao') {
+        aplicandoFiltro = '/findByDescricao/' + filtro
       }
     }
 
@@ -63,14 +66,11 @@ export class SprintService {
     return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${id}`).pipe(take(1));
   }
 
+
+
   public delete(id: number) {
     return this.http.delete(`${env.API_TICKET}${this.pathBase}/${id}`).pipe(take(1));
   }
-
-  public patch(id: number) {
-    return this.http.patch(`${env.API_TICKET}${this.pathBase}/${id}`, null).pipe(take(1));
-  }
-
 
   public FindBySolicitacaoDaSprint(id, pagina, qtd, campo, ordem) {
     if (ordem == "-1") {
@@ -92,20 +92,50 @@ export class SprintService {
   }
 
 
-  public addSolicitacaoASprint(model: any) {
-    return this.http.post(`${env.API_TICKET}${this.pathBase}/solicitacao`, model).pipe(take(1));
-  }
+  public FindBySprintSolicitacaoFase(idSprint, idSolicitacao, pagina, qtd, campo, ordem) {
+    if (ordem == "-1") {
+      campo = '-' + campo;
+    }
 
-  public deleteSolicitacaoDaSprint(idSprint: number, idSolicitacao: number) {
-    return this.http.delete(`${env.API_TICKET}${this.pathBase}/${idSprint}/solicitacao/${idSolicitacao}`).pipe(take(1));
-  }
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('page', pagina);
+    httpParams = httpParams.set('size', qtd);
+    httpParams = httpParams.set('sort', campo);
 
 
-  public FindBySolicitacaoAllDaSprint(idSprint:number) {
-    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${idSprint}/solicitacao/All`)
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${idSprint}/solicitacao/${idSolicitacao}`, {
+      params: httpParams
+    })
       .pipe(
         take(1),
       );
   }
+
+
+  findBySolicitacaoDaSprint(idSprint: number, idSolicitacao: number) {
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}`).pipe(take(1));
+  }
+
+  public FindByFasesDaSolicitacao(id, idSolicitacao, pagina, qtd, campo, ordem) {
+    if (ordem == "-1") {
+      campo = '-' + campo;
+    }
+
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('page', pagina);
+    httpParams = httpParams.set('size', qtd);
+    httpParams = httpParams.set('sort', campo);
+
+
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${id}/solicitacao/${idSolicitacao}`, {
+      params: httpParams
+    })
+      .pipe(
+        take(1),
+      );
+  }
+
+
+
 
 }

@@ -34,9 +34,6 @@ export class SolicitacaoService {
 
         aplicandoFiltro = '/findByIdGreaterThanEqual/' + filtro
       }
-      else if (campo == 'nome') {
-        aplicandoFiltro = '/findByNome/' + filtro
-      }
       else if (campo == 'descricao') {
         aplicandoFiltro = '/findByDescricao/' + filtro
       }
@@ -105,6 +102,16 @@ export class SolicitacaoService {
         take(1),
       );
   }
+
+
+
+  public FindByMovimentacao(idSolicitacao: number) {
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/${idSolicitacao}/movimentacao`)
+      .pipe(
+        take(1),
+      );
+  }
+
 
 
 }

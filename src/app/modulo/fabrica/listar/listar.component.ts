@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrormensageService } from 'src/app/core/server/errormensage.service';
-import { LocalStorageService } from 'src/app/core/server/local-storage.service';
-import { AnaliseService } from '../analise.service';
 import Swal from 'sweetalert2'
+import { FabricaService } from '../fabrica.service';
 
 
 @Component({
@@ -20,25 +19,18 @@ export class ListarComponent implements OnInit {
   protected pagCampo = 'id';
   protected pagOrdem = 1;
   protected pagFiltro = '';
-  private usuarioLogado: String;
 
 
 
   constructor(
-    private service: AnaliseService,
-    private localStorageService: LocalStorageService,
+    private service: FabricaService,
     private router: Router,
     private errorMensagem: ErrormensageService,
   ) { }
 
   ngOnInit(): void {
-    this.usuarioLogado = this.localStorageService.getUsuarioLogado();
-
     this.carregarGrid();
   }
-
-
-
 
   lazyLoad(event: any){
     const filtroGlobal = event.globalFilter;
@@ -64,8 +56,16 @@ export class ListarComponent implements OnInit {
     }
   }
 
+  novo(){
+    this.router.navigate(['/fabrica/novo']);
+  }
+
+  editar(id: number){
+    this.router.navigate(['/fabrica/editar/' + id]);
+  }
+
   detalhe(id: number){
-    this.router.navigate(['/analise/detalhe/' + id]);
+    this.router.navigate(['/fabrica/' + id + '/solicitacao']);
   }
 
 
@@ -89,23 +89,8 @@ export class ListarComponent implements OnInit {
   }
 
 
-  onRowSelect(event: any){
-    let codigo = '#' + event.data.id;
-    let solicitacao =
-      event.data.sistema.nome +
-      '<br><br>' + event.data.descricao;
-
-    console.log( event.data );
-
-    Swal.fire({
-      icon: 'info',
-      position: 'center',
-      title: codigo,
-      html: solicitacao,
-      showConfirmButton: true,
-      width: 800,
-    })
-
+  solicitacoesDaSprint(idSprint: number){
+    this.router.navigate(['/fabrica/' + idSprint + '/solicitacao']);
   }
 
 }

@@ -1,0 +1,47 @@
+<p-card>
+  <div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <strong>Adicionar Fase</strong>
+        </ng-template>
+
+        <form [formGroup]="form">
+
+          <div class="p-field">
+            <label for="field-fase">Fase</label>
+            <p-dropdown formControlName="fase" id="field-fase" [options]="fases" placeholder="&nbsp;"
+              optionLabel="nome" [showClear]="true"></p-dropdown>
+
+              <p-message severity="error" text="{{ getErrorFase() }}" *ngIf="form.controls.fase.invalid && form.controls.fase.dirty"></p-message>
+
+          </div>
+
+
+          <div class="p-field">
+            <label for="field-observacao">Observação</label>
+            <textarea pInputTextarea [rows]="8" [cols]="90" autoResize=false id="field-observacao"
+              formControlName="observacao"></textarea>
+          </div>
+
+
+
+          <div class="p-field">
+            <label>Finalizada</label>
+          </div>
+
+          <div class="p-field">
+            <p-inputSwitch formControlName="finalizada"></p-inputSwitch>
+          </div>
+
+          <div class="p-col-12">
+            <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-save'" label="Salvar"
+              class="p-button-raised p-button-success" [disabled]="form.invalid" (click)="salvar()"></button>
+            <button pButton type="button" icon="pi pi-backward" (click)="voltar()" label="Voltar"></button>
+          </div>
+
+        </form>
+      </p-panel>
+    </div>
+  </div>
+</p-card>

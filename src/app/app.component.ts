@@ -68,6 +68,12 @@ export class AppComponent implements OnInit {
           { label: 'Sprint', icon: 'pi pi-calendar-times', command: () => { this.clicked('sprint'); } },
         ]
       },
+      {
+        label: 'Fábrica',
+        items: [
+          { label: 'Trabalhar na Sprint', icon: 'pi pi-inbox', command: () => { this.clicked('fabrica'); } },
+        ]
+      },
 
     ];
   }

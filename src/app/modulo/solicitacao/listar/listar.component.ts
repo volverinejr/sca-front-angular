@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrormensageService } from 'src/app/core/server/errormensage.service';
 import { LocalStorageService } from 'src/app/core/server/local-storage.service';
-import { LoginService } from '../../login/login.service';
 import { SolicitacaoService } from '../solicitacao.service';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -95,5 +95,26 @@ export class ListarComponent implements OnInit {
       }
     );
   }
+
+
+  onRowSelect(event: any){
+    let codigo = '#' + event.data.id;
+    let solicitacao =
+      event.data.sistema.nome +
+      '<br><br>' + event.data.descricao;
+
+    console.log( event.data );
+
+    Swal.fire({
+      icon: 'info',
+      position: 'center',
+      title: codigo,
+      html: solicitacao,
+      showConfirmButton: true,
+      width: 800,
+    })
+
+  }
+
 
 }

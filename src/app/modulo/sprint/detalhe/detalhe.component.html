@@ -31,6 +31,27 @@
           <label>{{ dataSistema.dataEncaminhamentoAoTimeFormatada }}</label>
         </div>
 
+        <label> <strong>Solicitações:</strong> </label>
+        <table width="100%">
+          <tr>
+            <td><strong>Id</strong></td>
+            <td><strong>Descrição</strong></td>
+            <td><strong>Sistema</strong></td>
+            <td><strong>Usuário</strong></td>
+            <td><strong>Status</strong></td>
+          </tr>
+          <tr *ngFor="let registro of dataSolicitacao">
+            <td>{{registro.id}}</td>
+            <td>{{registro.descricao}}</td>
+            <td>{{registro.sistema.nome}}</td>
+            <td>{{registro.userName}}</td>
+            <td>{{registro.statusAtual}}</td>
+          </tr>
+        </table>
+
+
+
+
 
         <div class="p-col-12">
           <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-trash'" label="Excluir"

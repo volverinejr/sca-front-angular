@@ -15,6 +15,7 @@ export class DetalheComponent implements OnInit {
   id: number;
   inscricao: Subscription;
   dataSistema: any;
+  dataSolicitacao: any;
   carregando: boolean = false;
 
 
@@ -36,6 +37,8 @@ export class DetalheComponent implements OnInit {
           this.service.findById(this.id).subscribe(
             (response: any) => {
               this.dataSistema = response;
+
+              this.carregarSolicitacoes();
             },
             (error: any) => {
               this.errorMensagem.mostrarError('', error);
@@ -76,6 +79,18 @@ export class DetalheComponent implements OnInit {
       }
     })
 
+  }
+
+
+  protected carregarSolicitacoes() {
+    this.service.FindBySolicitacaoAllDaSprint(this.id).subscribe(
+      (response: any) => {
+        this.dataSolicitacao = response;
+      },
+      (error: any) => {
+        this.errorMensagem.mostrarError('', error);
+      }
+    );
   }
 
 }

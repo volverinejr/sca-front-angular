@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormensageService } from 'src/app/core/server/errormensage.service';
-import { SprintService } from '../sprint.service';
 import Swal from 'sweetalert2'
+import { FabricaService } from '../fabrica.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class SolicitacaoListarComponent implements OnInit {
   dataSouce: any[];
   protected pagNumero = 0;
   protected pagQtd = 10;
-  protected pagCampo = 'prioridade';
+  protected pagCampo = 'id';
   protected pagOrdem = 1;
   protected pagFiltro = '';
   id: number;
@@ -30,7 +30,7 @@ export class SolicitacaoListarComponent implements OnInit {
 
 
   constructor(
-    private service: SprintService,
+    private service: FabricaService,
     private router: Router,
     private errorMensagem: ErrormensageService,
     private route: ActivatedRoute,
@@ -75,7 +75,7 @@ export class SolicitacaoListarComponent implements OnInit {
     }
   }
 
-
+/*
   protected add(idSolicitacao: number) {
     var sprintSolicitacao = {
       "sprintId": this.id,
@@ -122,14 +122,13 @@ export class SolicitacaoListarComponent implements OnInit {
     );
 
   }
-
+*/
 
   protected carregarGrid() {
     this.carregandoGrid = true;
 
     this.service.FindBySolicitacaoDaSprint(this.id, this.pagNumero, this.pagQtd, this.pagCampo, this.pagOrdem).subscribe(
       (res: any) => {
-
         this.dataSouce = res.content;
         this.totalRecords = res.totalElements;
 
@@ -147,9 +146,9 @@ export class SolicitacaoListarComponent implements OnInit {
   protected carregarSprint() {
     this.service.findById(this.id).subscribe(
       (response: any) => {
-        this.spintHeader = 'Sprint: ' + response.id;
-        this.spintContent = response.dataInicioFormatada + ' à ' + response.dataFimFormatada +
-          ' | Time: ' + response.time.nome;
+        this.spintHeader = "Sprint: " + response.id;
+        this.spintContent = 'Período: ' + response.dataInicioFormatada + ' à ' + response.dataFimFormatada
+                            + ' | Time: ' + response.time.nome;
       },
       (error: any) => {
         this.errorMensagem.mostrarError('', error);
@@ -167,7 +166,7 @@ export class SolicitacaoListarComponent implements OnInit {
   onRowSelect(event: any){
     let codigo = '#' + event.data.id;
     let solicitacao =
-      event.data.sistemanome +
+      event.data.sistema.nome +
       '<br><br>' + event.data.descricao;
 
     console.log( event.data );
@@ -181,6 +180,11 @@ export class SolicitacaoListarComponent implements OnInit {
       width: 800,
     })
 
+  }
+
+
+  addFases(idSolicitacao: number){
+    this.router.navigate(['/fabrica/' + this.id + '/solicitacao/' + idSolicitacao + '/fase']);
   }
 
 }

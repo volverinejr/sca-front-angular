@@ -46,6 +46,7 @@
         <th >Início</th>
         <th >Fim</th>
         <th>Time</th>
+        <th>Encaminhado em</th>
         <th width="15%"><i class="pi pi-cog"></i></th>
       </tr>
     </ng-template>
@@ -57,6 +58,7 @@
         <td>{{ linha.dataInicioFormatada }}</td>
         <td>{{ linha.dataFimFormatada }}</td>
         <td>{{ linha.time.nome }}</td>
+        <td>{{ linha.dataEncaminhamentoAoTimeFormatada }}</td>
         <td>
           <button
             type="button"

@@ -75,6 +75,9 @@ export class ListarComponent implements OnInit {
     this.service.findAll(this.pagNumero, this.pagQtd, this.pagCampo, this.pagOrdem, this.pagFiltro).subscribe(
       (res: any) => {
 
+
+        console.log( res.content );
+
         this.dataSouce = res.content;
         this.totalRecords = res.totalElements;
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnaliseListarGuard } from './modulo/analise/guard/analise-listar.guard';
 import { ClienteListarGuard } from './modulo/cliente/guard/cliente-listar.guard';
+import { FabricaListarGuard } from './modulo/fabrica/guard/fabrica-listar.guard';
 import { FaseListarGuard } from './modulo/fase/guard/fase-listar.guard';
 import { PermissaoListarGuard } from './modulo/permissao/guard/permissao-listar.guard';
 import { SistemaListarGuard } from './modulo/sistema/guard/sistema-listar.guard';
@@ -69,6 +70,14 @@ const routes: Routes = [
     canLoad: [FaseListarGuard],
     canActivate: [FaseListarGuard],
   },
+  {
+    path: 'fabrica',
+    loadChildren: () => import('./modulo/fabrica/fabrica.module').then(m => m.FabricaModule),
+    canLoad: [FabricaListarGuard],
+    canActivate: [FabricaListarGuard],
+  },
+
+
 
 ];
 

@@ -24,14 +24,14 @@
     [lazy]="true"
     (onLazyLoad)="lazyLoad($event)"
     [lazyLoadOnInit]="false"
-    [globalFilterFields]="['id', 'prioridade']"
+    [globalFilterFields]="['id']"
     styleClass="p-datatable-striped"
-    sortField="prioridade"
+    sortField="id"
     sortOrder="1"
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex">
-        <span>Lista das solicitações</span>
+        <span>Lista das Solicitações</span>
         <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
@@ -53,8 +53,8 @@
         <th>Descrição</th>
         <th>Sistema</th>
         <th>Usuário</th>
-        <th pSortableColumn="prioridade">Prioridade<p-sortIcon field="prioridade"></p-sortIcon></th>
-        <th width="10%"><i class="pi pi-cog"></i></th>
+        <th>Prioridade</th>
+        <th width="5%"><i class="pi pi-cog"></i></th>
       </tr>
     </ng-template>
 
@@ -63,37 +63,28 @@
       <tr [pSelectableRow]="linha">
         <td>{{ linha.id }}</td>
         <td>{{ linha.descricao }}</td>
-        <td>{{ linha.sistemanome }}</td>
-        <td>{{ linha.username }}</td>
+        <td>{{ linha.sistema.nome }}</td>
+        <td>{{ linha.userName }}</td>
         <td>
           <p-selectButton disabled=true [options]="prioridadeOptions" [(ngModel)]="linha.prioridade" optionLabel="label" optionValue="value"></p-selectButton>
         </td>
         <td>
+
           <button
-          *ngIf="linha.cadastrado=='0'"
             type="button"
-            (click)="add(linha.id)"
+            (click)="addFases(linha.id)"
             pButton
             icon="pi pi-plus"
             class="p-button-raised p-button-rounded p-button-help"
-            pTooltip="add sistemas ao cliente"
+            pTooltip="add fases"
           ></button>
 
-          <button
-          *ngIf="linha.cadastrado!='0'"
-            type="button"
-            (click)="remover(linha.id)"
-            pButton
-            icon="pi pi-minus"
-            class="p-button-raised p-button-rounded p-button-warning"
-            pTooltip="remover sistemas do cliente"
-          ></button>
         </td>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="paginatorleft">
-        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar"></button>
+        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar à sprint"></button>
     </ng-template>
 
     <ng-template pTemplate="paginatorright"> </ng-template>

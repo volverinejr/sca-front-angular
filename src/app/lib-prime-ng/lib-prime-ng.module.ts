@@ -15,7 +15,7 @@ import { BadgeModule } from 'primeng/badge';
 import { MenubarModule } from 'primeng/menubar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
-
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   exports: [
@@ -34,6 +34,7 @@ import { CalendarModule } from 'primeng/calendar';
     MenubarModule,
     SelectButtonModule,
     CalendarModule,
+    FieldsetModule,
   ]
 })
 export class LibPrimeNGModule { }

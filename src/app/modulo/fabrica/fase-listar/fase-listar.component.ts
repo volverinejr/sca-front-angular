@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrormensageService } from 'src/app/core/server/errormensage.service';
-import { LocalStorageService } from 'src/app/core/server/local-storage.service';
-import { AnaliseService } from '../analise.service';
 import Swal from 'sweetalert2'
+import { FabricaService } from '../fabrica.service';
 
 
 @Component({
   selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  templateUrl: './fase-listar.component.html',
+  styleUrls: ['./fase-listar.component.css']
 })
-export class ListarComponent implements OnInit {
+export class FaseListarComponent implements OnInit {
   carregandoGrid: boolean = false;
   totalRecords: number = 0;
   dataSouce: any[];
@@ -20,27 +19,42 @@ export class ListarComponent implements OnInit {
   protected pagCampo = 'id';
   protected pagOrdem = 1;
   protected pagFiltro = '';
-  private usuarioLogado: String;
+  id: number;
+  idsolicitacao: number;
+  spintHeader: string;
+  spintContent: string;
 
+  prioridadeOptions: any[] = [
+    {label: 'Baixa', value: 3},
+    {label: 'Média', value: 2},
+    {label: 'Alta', value: 1},
+  ];
 
 
   constructor(
-    private service: AnaliseService,
-    private localStorageService: LocalStorageService,
+    private service: FabricaService,
     private router: Router,
     private errorMensagem: ErrormensageService,
+    private route: ActivatedRoute,
+
   ) { }
 
   ngOnInit(): void {
-    this.usuarioLogado = this.localStorageService.getUsuarioLogado();
+    // Recebendo o parametro da rota
+    this.route.params.subscribe(
+      (params: any) => {
+        this.id = params['id'];
+        this.idsolicitacao = params['idsolicitacao'];
 
-    this.carregarGrid();
+        this.carregarSolicitacao();
+
+        this.carregarGrid();
+      }
+    );
   }
 
 
-
-
-  lazyLoad(event: any){
+  lazyLoad(event: any) {
     const filtroGlobal = event.globalFilter;
 
     this.pagNumero = ((event.first + event.rows) / event.rows) - 1;
@@ -64,17 +78,12 @@ export class ListarComponent implements OnInit {
     }
   }
 
-  detalhe(id: number){
-    this.router.navigate(['/analise/detalhe/' + id]);
-  }
-
 
   protected carregarGrid() {
     this.carregandoGrid = true;
 
-    this.service.findAll(this.pagNumero, this.pagQtd, this.pagCampo, this.pagOrdem, this.pagFiltro).subscribe(
+    this.service.FindByFasesDaSolicitacao(this.id, this.idsolicitacao, this.pagNumero, this.pagQtd, this.pagCampo, this.pagOrdem).subscribe(
       (res: any) => {
-
         this.dataSouce = res.content;
         this.totalRecords = res.totalElements;
 
@@ -86,6 +95,31 @@ export class ListarComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
+  }
+
+
+  protected carregarSolicitacao() {
+    this.service.findBySolicitacaoDaSprint(this.id, this.idsolicitacao).subscribe(
+      (response: any) => {
+        this.spintHeader = 'Solicitacao: ' + response.id;
+        this.spintContent = response.descricao;
+      },
+      (error: any) => {
+        this.errorMensagem.mostrarError('', error);
+      }
+    );
+  }
+
+
+  novo(){
+    this.router.navigate(['/fabrica/' + this.id + '/solicitacao/' + this.idsolicitacao + '/fase/novo']);
+  }
+
+
+
+
+  protected voltar() {
+    window.history.back()
   }
 
 
@@ -106,6 +140,11 @@ export class ListarComponent implements OnInit {
       width: 800,
     })
 
+  }
+
+
+  editar(idFase: number){
+    alert(idFase);
   }
 
 }

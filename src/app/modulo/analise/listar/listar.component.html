@@ -10,6 +10,7 @@
     currentPageReportTemplate="{first} de {last} | Total {totalRecords} registros."
     emptymessage="Nenhum registro encontrado"
     selectionMode="single"
+    (onRowSelect)="onRowSelect($event)"
     [resizableColumns]="true"
     [rowsPerPageOptions]="[10, 25, 50]"
     totalRecords="{{ totalRecords }}"

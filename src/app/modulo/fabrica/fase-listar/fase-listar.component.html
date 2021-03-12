@@ -24,14 +24,16 @@
     [lazy]="true"
     (onLazyLoad)="lazyLoad($event)"
     [lazyLoadOnInit]="false"
-    [globalFilterFields]="['id', 'prioridade']"
+    [globalFilterFields]="['id']"
     styleClass="p-datatable-striped"
-    sortField="prioridade"
+    sortField="id"
     sortOrder="1"
   >
-    <ng-template pTemplate="caption">
+
+  <ng-template pTemplate="caption">
       <div class="p-d-flex">
-        <span>Lista das solicitações</span>
+        <span>Lista das Fases</span>
+
         <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
@@ -50,11 +52,10 @@
         <th width="10%" pResizableColumn pSortableColumn="id">
           #<p-sortIcon field="id"></p-sortIcon>
         </th>
-        <th>Descrição</th>
-        <th>Sistema</th>
-        <th>Usuário</th>
-        <th pSortableColumn="prioridade">Prioridade<p-sortIcon field="prioridade"></p-sortIcon></th>
-        <th width="10%"><i class="pi pi-cog"></i></th>
+        <th>Fase</th>
+        <th>Observação</th>
+        <th width="10%">Finalizada</th>
+        <th width="5%"><i class="pi pi-cog"></i></th>
       </tr>
     </ng-template>
 
@@ -62,45 +63,45 @@
     <ng-template pTemplate="body" let-linha>
       <tr [pSelectableRow]="linha">
         <td>{{ linha.id }}</td>
-        <td>{{ linha.descricao }}</td>
-        <td>{{ linha.sistemanome }}</td>
-        <td>{{ linha.username }}</td>
+        <td>{{ linha.fase.nome }}</td>
+        <td>{{ linha.observacao }}</td>
         <td>
-          <p-selectButton disabled=true [options]="prioridadeOptions" [(ngModel)]="linha.prioridade" optionLabel="label" optionValue="value"></p-selectButton>
+          <i *ngIf="linha.finalizada" class="pi pi-check-circle" style="font-size: 2rem"></i>
         </td>
         <td>
-          <button
-          *ngIf="linha.cadastrado=='0'"
-            type="button"
-            (click)="add(linha.id)"
-            pButton
-            icon="pi pi-plus"
-            class="p-button-raised p-button-rounded p-button-help"
-            pTooltip="add sistemas ao cliente"
-          ></button>
 
           <button
-          *ngIf="linha.cadastrado!='0'"
             type="button"
-            (click)="remover(linha.id)"
+            (click)="editar(linha.id)"
             pButton
-            icon="pi pi-minus"
+            icon="pi pi-pencil"
             class="p-button-raised p-button-rounded p-button-warning"
-            pTooltip="remover sistemas do cliente"
+            pTooltip="editar"
           ></button>
+
         </td>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="paginatorleft">
-        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar"></button>
+
+      <button
+        type="button"
+        class="p-button-raised p-button-success"
+        pButton
+        icon="pi pi-plus-circle"
+        label="Nova Fase"
+        (click)="novo()"
+      ></button>
+
+        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar à solicitação"></button>
     </ng-template>
 
     <ng-template pTemplate="paginatorright"> </ng-template>
 
     <ng-template pTemplate="emptymessage" let-columns>
       <tr>
-        <td [attr.colspan]="6">
+        <td [attr.colspan]="5">
           <h4>Nenhum registro encontrado.</h4>
         </td>
       </tr>

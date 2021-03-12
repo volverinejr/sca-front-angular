@@ -15,6 +15,7 @@ export class DetalheComponent implements OnInit {
   id: number;
   inscricao: Subscription;
   dataSistema: any;
+  dataMovimentacao: any;
   carregando: boolean = false;
 
 
@@ -36,6 +37,8 @@ export class DetalheComponent implements OnInit {
           this.service.findById(this.id).subscribe(
             (response: any) => {
               this.dataSistema = response;
+
+              this.carregarMovimentacao();
             },
             (error: any) => {
               this.errorMensagem.mostrarError('', error);
@@ -52,6 +55,19 @@ export class DetalheComponent implements OnInit {
 
   voltar() {
     window.history.back()
+  }
+
+
+  carregarMovimentacao(){
+    this.service.FindByMovimentacao(this.id).subscribe(
+      (response: any) => {
+        this.dataMovimentacao = response;
+      },
+      (error: any) => {
+        this.errorMensagem.mostrarError('', error);
+      }
+    );
+
   }
 
 }

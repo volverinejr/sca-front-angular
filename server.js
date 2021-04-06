@@ -6,11 +6,8 @@
   next();
 }
 const express = require("express");
-var cors = require('cors');
 const app = express();
 app.use(requireHTTPS);
-
-app.options('*', cors());
 
 app.use(express.static("./dist/sca"));
 

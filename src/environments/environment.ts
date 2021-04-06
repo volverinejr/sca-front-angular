@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_TICKET: 'https://sca-prod-api.herokuapp.com',
-  //API_TICKET: '/ModuloTicket',
+  //API_TICKET: 'https://sca-prod-api.herokuapp.com',
+  API_TICKET: '/ModuloTicket',
 };
 
 /*

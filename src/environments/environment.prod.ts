@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  urlBase: "http://localhost:8080"
+  API_TICKET: 'https://sca-prod-api.herokuapp.com',
+  urlBase: "https://sca-dev-api.herokuapp.com"
 };

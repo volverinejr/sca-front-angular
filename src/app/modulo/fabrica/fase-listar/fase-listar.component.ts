@@ -143,8 +143,13 @@ export class FaseListarComponent implements OnInit {
   }
 
 
-  editar(idFase: number){
-    alert(idFase);
+  detalhe(idFase: number){
+    this.router.navigate(['/fabrica/' + this.id + '/solicitacao/' + this.idsolicitacao + '/fase/detalhe/' + idFase]);
   }
+
+  editar(idFase: number){
+    this.router.navigate(['/fabrica/' + this.id + '/solicitacao/' + this.idsolicitacao + '/fase/editar/' + idFase]);
+  }
+
 
 }

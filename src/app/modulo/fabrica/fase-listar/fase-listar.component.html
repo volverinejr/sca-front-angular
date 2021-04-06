@@ -1,10 +1,9 @@
 <p-card>
-
-  <p-fieldset legend="{{spintHeader}}">
+  <p-fieldset legend="{{ spintHeader }}">
     {{ spintContent }}
   </p-fieldset>
 
-  <br>
+  <br />
 
   <!-- GRID -->
   <p-table
@@ -29,8 +28,7 @@
     sortField="id"
     sortOrder="1"
   >
-
-  <ng-template pTemplate="caption">
+    <ng-template pTemplate="caption">
       <div class="p-d-flex">
         <span>Lista das Fases</span>
 
@@ -55,7 +53,7 @@
         <th>Fase</th>
         <th>Observação</th>
         <th width="10%">Finalizada</th>
-        <th width="5%"><i class="pi pi-cog"></i></th>
+        <th width="10%"><i class="pi pi-cog"></i></th>
       </tr>
     </ng-template>
 
@@ -66,9 +64,21 @@
         <td>{{ linha.fase.nome }}</td>
         <td>{{ linha.observacao }}</td>
         <td>
-          <i *ngIf="linha.finalizada" class="pi pi-check-circle" style="font-size: 2rem"></i>
+          <i
+            *ngIf="linha.finalizada"
+            class="pi pi-check-circle"
+            style="font-size: 2rem"
+          ></i>
         </td>
         <td>
+          <button
+            type="button"
+            (click)="detalhe(linha.id)"
+            pButton
+            icon="pi pi-eye"
+            class="p-button-raised p-button-rounded p-button-help"
+            pTooltip="detalhe"
+          ></button>
 
           <button
             type="button"
@@ -78,13 +88,11 @@
             class="p-button-raised p-button-rounded p-button-warning"
             pTooltip="editar"
           ></button>
-
         </td>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="paginatorleft">
-
       <button
         type="button"
         class="p-button-raised p-button-success"
@@ -94,7 +102,13 @@
         (click)="novo()"
       ></button>
 
-        <button pButton type="button" icon="pi pi-backward"  (click)="voltar()" label="Voltar à solicitação"></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-backward"
+        (click)="voltar()"
+        label="Voltar à solicitação"
+      ></button>
     </ng-template>
 
     <ng-template pTemplate="paginatorright"> </ng-template>

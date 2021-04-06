@@ -1,0 +1,39 @@
+<p-card>
+  <div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <strong>Detalhe da Fase</strong>
+        </ng-template>
+
+        <div class="p-field">
+          <label> <strong>Id:</strong> </label>
+          <label>{{ dataSistema.id }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Fase:</strong> </label>
+          <label>{{ dataSistema.fase.nome }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Observação:</strong> </label>
+          <label>{{ dataSistema.observacao }}</label>
+        </div>
+
+        <div class="p-field">
+          <label> <strong>Finalizada:</strong> </label>
+          <label>{{ dataSistema.finalizada | yesNo }}</label>
+        </div>
+
+
+        <div class="p-col-12">
+          <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-trash'" label="Excluir"
+            class="p-button-raised p-button-danger" (click)="excluir()"></button>
+          <button pButton type="button" icon="pi pi-backward" class="p-button-raised p-button-primary"
+            (click)="voltar()" label="Voltar"></button>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</p-card>

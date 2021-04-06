@@ -1,9 +1,11 @@
 <p-card>
-  <div class="p-grid">
+  <div class="p-grid" id="htmlData">
     <div class="p-col-6 p-offset-3">
       <p-panel>
         <ng-template pTemplate="header">
           <strong>Detalhe da Solicitação</strong>
+            <button pButton type="button" icon="pi pi-print" class="p-button-raised p-button-danger"
+            (click)="openPDF_2()"></button>
         </ng-template>
 
         <div class="p-field">
@@ -64,3 +66,5 @@
     </div>
   </div>
 </p-card>
+
+

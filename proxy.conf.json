@@ -1,7 +1,6 @@
 {
-
   "/ModuloTicket/*": {
-    "target": "http://localhost:8080/",
+    "target": "https://sca-dev-api.herokuapp.com/",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {

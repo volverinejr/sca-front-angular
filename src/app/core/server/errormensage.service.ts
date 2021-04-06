@@ -32,6 +32,15 @@ export class ErrormensageService {
         window.history.back();
       });
     }
+    else if (error.status == 404) {
+      Swal.fire({
+        icon: 'info',
+        position: 'center',
+        title: error.error.message,
+        showConfirmButton: true,
+        timer: 5000
+      });
+    }
     else if (error.status == 500) {
 
       if (pagina == 'login') {

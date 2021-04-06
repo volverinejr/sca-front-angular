@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DetalheComponent } from './detalhe/detalhe.component';
+import { EditarComponent } from './editar/editar.component';
 import { FaseListarComponent } from './fase-listar/fase-listar.component';
 import { FabricaListarGuard } from './guard/fabrica-listar.guard';
 import { ListarComponent } from './listar/listar.component';
@@ -24,15 +26,16 @@ const Routes: Routes = [
     canLoad: [FabricaListarGuard],
     canActivate: [FabricaListarGuard],
   },
-
-/*  {
-    path: ':id/solicitacao/:idsolicitacao/fase', component: FaseListarComponent,
+  {
+    path: ':id/solicitacao/:idsolicitacao/fase/editar/:idfase', component: EditarComponent,
     canLoad: [FabricaListarGuard],
     canActivate: [FabricaListarGuard],
   },
-*/
-
-
+  {
+    path: ':id/solicitacao/:idsolicitacao/fase/detalhe/:idfase', component: DetalheComponent,
+    canLoad: [FabricaListarGuard],
+    canActivate: [FabricaListarGuard],
+  },
 ];
 
 @NgModule({

@@ -18,8 +18,8 @@ export class FabricaService {
     return this.http.post(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}`, model).pipe(take(1));
   }
 
-  public updateFase(model: any) {
-    return this.http.put(`${env.API_TICKET}${this.pathBase}`, model).pipe(take(1));
+  public updateFase(idSprint:number, idSolicitacao:number, model: any) {
+    return this.http.put(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}`, model).pipe(take(1));
   }
 
 
@@ -68,8 +68,8 @@ export class FabricaService {
 
 
 
-  public delete(id: number) {
-    return this.http.delete(`${env.API_TICKET}${this.pathBase}/${id}`).pipe(take(1));
+  public deleteFase(idSprint:number, idSolicitacao:number, idFase:number) {
+    return this.http.delete(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}/fase/${idFase}`).pipe(take(1));
   }
 
   public FindBySolicitacaoDaSprint(id, pagina, qtd, campo, ordem) {
@@ -134,6 +134,11 @@ export class FabricaService {
         take(1),
       );
   }
+
+  findByFase(idSprint: number, idSolicitacao: number, idFase: number) {
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}/fase/${idFase}`).pipe(take(1));
+  }
+
 
 
 

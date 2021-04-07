@@ -2,13 +2,10 @@ const { exec } = require('child_process');
 
 let command;
 
-console.log(`Valor da variável ENV: ${process.env.ENV}`);
-
 if (process.env.ENV === 'prod') {
-    command = exec('ng build --aot --configuration=prod');
+    command = exec('ng build --aot --configuration=production');
 } else {
-    console.log('configurando DEV...');
-    command = exec('ng build --aot --environment=dev');
+    command = exec('ng build --aot --configuration=dev');
 }
 
 if (command != undefined) {

@@ -5,6 +5,7 @@ let command;
 if (process.env.ENV === 'prod') {
     command = exec('ng build --aot --configuration=production');
 } else {
+  console.error('teste de MIRO');
     command = exec('ng build --aot --configuration=dev');
 }
 

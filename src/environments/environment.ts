@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   API_TICKET: 'http://localhost:8080',
-  //API_TICKET: '/ModuloTicket',
+  //API_TICKET: '/ModuloTicket', --teste
 };
 
 /*

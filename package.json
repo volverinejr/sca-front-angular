@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "node post-install.js"
+    "preinstall": "node environment.js"
   },
   "private": true,
   "dependencies": {

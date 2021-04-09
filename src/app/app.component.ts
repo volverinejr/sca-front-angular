@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { LocalStorageService } from './core/server/local-storage.service';
 
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'SCA';
   usuarioLogado: string;
   items: MenuItem[];
+  public ambiente: boolean = env.production;
 
   constructor(
     private router: Router,

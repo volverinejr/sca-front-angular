@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^11.2.4",
-    "@angular/cdk": "^11.2.3",
+    "@angular/cdk": "^11.2.8",
     "@angular/common": "~11.2.4",
     "@angular/compiler": "~11.2.4",
     "@angular/core": "~11.2.4",
@@ -25,7 +25,7 @@
     "jspdf": "^2.3.1",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
-    "primeng": "^11.3.2",
+    "primeng": "^11.2.3",
     "rxjs": "~6.6.6",
     "sweetalert2": "^10.14.1",
     "tslib": "^2.0.0",

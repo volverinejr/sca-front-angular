@@ -1,28 +1,41 @@
 <p-card>
   <div class="p-grid">
-    <div class="p-col-6 p-offset-3">
+    <div class="p-col-8 p-offset-2">
       <p-panel>
         <ng-template pTemplate="header">
           <strong>Editar fase</strong>
         </ng-template>
 
         <form [formGroup]="form">
-
           <div class="p-field">
             <label for="field-fase">Fase</label>
-            <p-dropdown formControlName="fase" id="field-fase" [options]="fases" placeholder="&nbsp;"
-              optionLabel="nome" [showClear]="true"></p-dropdown>
+            <p-dropdown
+              formControlName="fase"
+              id="field-fase"
+              [options]="fases"
+              placeholder="&nbsp;"
+              optionLabel="nome"
+              [showClear]="true"
+            ></p-dropdown>
 
-              <p-message severity="error" text="{{ getErrorFase() }}" *ngIf="form.controls.fase.invalid && form.controls.fase.dirty"></p-message>
+            <p-message
+              severity="error"
+              text="{{ getErrorFase() }}"
+              *ngIf="form.controls.fase.invalid && form.controls.fase.dirty"
+            ></p-message>
           </div>
 
           <div class="p-field">
             <label for="field-observacao">Observação</label>
-            <textarea pInputTextarea [rows]="8" [cols]="90" autoResize=false id="field-observacao"
-              formControlName="observacao"></textarea>
+            <textarea
+              pInputTextarea
+              [rows]="8"
+              [cols]="90"
+              autoResize="false"
+              id="field-observacao"
+              formControlName="observacao"
+            ></textarea>
           </div>
-
-
 
           <div class="p-field">
             <label>Finalizada</label>
@@ -33,13 +46,24 @@
           </div>
 
           <div class="p-col-12">
-            <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-save'" label="Atualizar"
-              class="p-button-raised p-button-success" [disabled]="form.invalid" (click)="atualizar()"></button>
-            <button pButton type="button" icon="pi pi-backward" (click)="voltar()" label="Voltar"></button>
+            <button
+              pButton
+              type="button"
+              [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-save'"
+              label="Atualizar"
+              class="p-button-raised p-button-success"
+              [disabled]="form.invalid"
+              (click)="atualizar()"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-backward"
+              (click)="voltar()"
+              label="Voltar"
+            ></button>
           </div>
-
         </form>
-
       </p-panel>
     </div>
   </div>

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   title = 'SCA';
   usuarioLogado: string;
   items: MenuItem[];
-  public ambiente: boolean = env.production;
+  public ambiente: String = env.AMBIENTE;
 
   constructor(
     private router: Router,

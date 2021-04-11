@@ -1,124 +1,124 @@
 <p-card>
   <p-fieldset legend="{{ spintHeader }}">
     {{ spintContent }}
+
+    <br />
+
+    <!-- GRID -->
+    <p-table
+      #dt
+      [value]="dataSouce"
+      [loading]="carregandoGrid"
+      [paginator]="true"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first} de {last} | Total {totalRecords} registros."
+      emptymessage="Nenhum registro encontrado"
+      selectionMode="single"
+      (onRowSelect)="onRowSelect($event)"
+      [resizableColumns]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      totalRecords="{{ totalRecords }}"
+      [rows]="10"
+      [lazy]="true"
+      (onLazyLoad)="lazyLoad($event)"
+      [lazyLoadOnInit]="false"
+      [globalFilterFields]="['id']"
+      styleClass="p-datatable-striped"
+      sortField="id"
+      sortOrder="1"
+    >
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+          <span>Lista das Fases</span>
+
+          <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Pesquisar"
+            />
+          </span>
+        </div>
+      </ng-template>
+
+      <!-- CABECALHO -->
+      <ng-template pTemplate="header" class="ui-column-title">
+        <tr>
+          <th width="10%" pResizableColumn pSortableColumn="id">
+            #<p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th>Fase</th>
+          <th>Observação</th>
+          <th width="10%">Finalizada</th>
+          <th width="10%"><i class="pi pi-cog"></i></th>
+        </tr>
+      </ng-template>
+
+      <!-- CORPO -->
+      <ng-template pTemplate="body" let-linha>
+        <tr [pSelectableRow]="linha">
+          <td>{{ linha.id }}</td>
+          <td>{{ linha.fase.nome }}</td>
+          <td>{{ linha.observacao }}</td>
+          <td>
+            <i
+              *ngIf="linha.finalizada"
+              class="pi pi-check-circle"
+              style="font-size: 2rem"
+            ></i>
+          </td>
+          <td>
+            <button
+              type="button"
+              (click)="detalhe(linha.id)"
+              pButton
+              icon="pi pi-eye"
+              class="p-button-raised p-button-rounded p-button-help"
+              pTooltip="detalhe"
+            ></button>
+
+            <button
+              type="button"
+              (click)="editar(linha.id)"
+              pButton
+              icon="pi pi-pencil"
+              class="p-button-raised p-button-rounded p-button-warning"
+              pTooltip="editar"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="paginatorleft">
+        <button
+          type="button"
+          class="p-button-raised p-button-success"
+          pButton
+          icon="pi pi-plus-circle"
+          label="Nova Fase"
+          (click)="novo()"
+        ></button>
+
+        <button
+          pButton
+          type="button"
+          icon="pi pi-backward"
+          (click)="voltar()"
+          label="Voltar à solicitação"
+        ></button>
+      </ng-template>
+
+      <ng-template pTemplate="paginatorright"> </ng-template>
+
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="5">
+            <h4>Nenhum registro encontrado.</h4>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </p-fieldset>
-
-  <br />
-
-  <!-- GRID -->
-  <p-table
-    #dt
-    [value]="dataSouce"
-    [loading]="carregandoGrid"
-    [paginator]="true"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first} de {last} | Total {totalRecords} registros."
-    emptymessage="Nenhum registro encontrado"
-    selectionMode="single"
-    (onRowSelect)="onRowSelect($event)"
-    [resizableColumns]="true"
-    [rowsPerPageOptions]="[10, 25, 50]"
-    totalRecords="{{ totalRecords }}"
-    [rows]="10"
-    [lazy]="true"
-    (onLazyLoad)="lazyLoad($event)"
-    [lazyLoadOnInit]="false"
-    [globalFilterFields]="['id']"
-    styleClass="p-datatable-striped"
-    sortField="id"
-    sortOrder="1"
-  >
-    <ng-template pTemplate="caption">
-      <div class="p-d-flex">
-        <span>Lista das Fases</span>
-
-        <span class="p-input-icon-left p-ml-auto">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Pesquisar"
-          />
-        </span>
-      </div>
-    </ng-template>
-
-    <!-- CABECALHO -->
-    <ng-template pTemplate="header" class="ui-column-title">
-      <tr>
-        <th width="10%" pResizableColumn pSortableColumn="id">
-          #<p-sortIcon field="id"></p-sortIcon>
-        </th>
-        <th>Fase</th>
-        <th>Observação</th>
-        <th width="10%">Finalizada</th>
-        <th width="10%"><i class="pi pi-cog"></i></th>
-      </tr>
-    </ng-template>
-
-    <!-- CORPO -->
-    <ng-template pTemplate="body" let-linha>
-      <tr [pSelectableRow]="linha">
-        <td>{{ linha.id }}</td>
-        <td>{{ linha.fase.nome }}</td>
-        <td>{{ linha.observacao }}</td>
-        <td>
-          <i
-            *ngIf="linha.finalizada"
-            class="pi pi-check-circle"
-            style="font-size: 2rem"
-          ></i>
-        </td>
-        <td>
-          <button
-            type="button"
-            (click)="detalhe(linha.id)"
-            pButton
-            icon="pi pi-eye"
-            class="p-button-raised p-button-rounded p-button-help"
-            pTooltip="detalhe"
-          ></button>
-
-          <button
-            type="button"
-            (click)="editar(linha.id)"
-            pButton
-            icon="pi pi-pencil"
-            class="p-button-raised p-button-rounded p-button-warning"
-            pTooltip="editar"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="paginatorleft">
-      <button
-        type="button"
-        class="p-button-raised p-button-success"
-        pButton
-        icon="pi pi-plus-circle"
-        label="Nova Fase"
-        (click)="novo()"
-      ></button>
-
-      <button
-        pButton
-        type="button"
-        icon="pi pi-backward"
-        (click)="voltar()"
-        label="Voltar à solicitação"
-      ></button>
-    </ng-template>
-
-    <ng-template pTemplate="paginatorright"> </ng-template>
-
-    <ng-template pTemplate="emptymessage" let-columns>
-      <tr>
-        <td [attr.colspan]="5">
-          <h4>Nenhum registro encontrado.</h4>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
 </p-card>

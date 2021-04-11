@@ -6,6 +6,6 @@ const heroku = `export const environment = {
 }`
 fs.writeFile('src/environments/environment.prod.ts', heroku, (err, result) => {
    if(err){
-      console.log('Falha ao escrever arquivo');
+      console.log('Falha ao escrever arquivo!');
    }
 });

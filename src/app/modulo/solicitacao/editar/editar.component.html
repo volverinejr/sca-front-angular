@@ -1,6 +1,6 @@
 <p-card>
   <div class="p-grid">
-    <div class="p-col-6 p-offset-3">
+    <div class="p-col-8 p-offset-2">
       <p-panel>
         <ng-template pTemplate="header">
           <strong>Atualizar Solicitação</strong>
@@ -9,34 +9,67 @@
         <form [formGroup]="form">
           <div class="p-field">
             <label for="field-descricao">Descrição</label>
-            <textarea pInputTextarea [rows]="8" [cols]="90" autoResize=false id="field-descricao"
-              formControlName="descricao" autofocus required></textarea>
-            <p-message severity="error" text="{{ getErrorDescricao() }}"
-              *ngIf="form.controls.descricao.invalid && form.controls.descricao.dirty"></p-message>
+            <textarea
+              pInputTextarea
+              [rows]="8"
+              [cols]="90"
+              autoResize="false"
+              id="field-descricao"
+              formControlName="descricao"
+              autofocus
+              required
+            ></textarea>
+            <p-message
+              severity="error"
+              text="{{ getErrorDescricao() }}"
+              *ngIf="
+                form.controls.descricao.invalid && form.controls.descricao.dirty
+              "
+            ></p-message>
           </div>
 
           <div class="p-field">
             <label for="field-cliente">Cliente</label>
-            <p-dropdown formControlName="cliente" id="field-cliente" (onChange)="onChangeCliente($event)"  [options]="clientes" placeholder="&nbsp;"
-              optionLabel="nome" ></p-dropdown>
+            <p-dropdown
+              formControlName="cliente"
+              id="field-cliente"
+              (onChange)="onChangeCliente($event)"
+              [options]="clientes"
+              placeholder="&nbsp;"
+              optionLabel="nome"
+            ></p-dropdown>
           </div>
 
           <div class="p-field">
             <label for="field-sistema">Sistema</label>
-            <p-dropdown formControlName="sistema" id="field-sistema" [options]="sistemas" placeholder="&nbsp;"
-              optionLabel="nome" ></p-dropdown>
+            <p-dropdown
+              formControlName="sistema"
+              id="field-sistema"
+              [options]="sistemas"
+              placeholder="&nbsp;"
+              optionLabel="nome"
+            ></p-dropdown>
           </div>
-
-
-
 
           <div class="p-col-12">
-            <button pButton type="button" [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-save'" label="Atualizar"
-              class="p-button-raised p-button-success" [disabled]="form.invalid" (click)="atualizar()"></button>
-            <button pButton type="button" icon="pi pi-backward" class="p-button-raised p-button-primary"
-              (click)="voltar()" label="Voltar"></button>
+            <button
+              pButton
+              type="button"
+              [icon]="carregando ? 'pi pi-spin pi-spinner' : 'pi pi-save'"
+              label="Atualizar"
+              class="p-button-raised p-button-success"
+              [disabled]="form.invalid"
+              (click)="atualizar()"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-backward"
+              class="p-button-raised p-button-primary"
+              (click)="voltar()"
+              label="Voltar"
+            ></button>
           </div>
-
         </form>
       </p-panel>
     </div>

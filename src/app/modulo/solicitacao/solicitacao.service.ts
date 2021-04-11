@@ -94,7 +94,6 @@ export class SolicitacaoService {
     httpParams = httpParams.set('size', qtd);
     httpParams = httpParams.set('sort', campo);
 
-
     return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/cliente/${idCliente}/sistemas`, {
       params: httpParams
     })

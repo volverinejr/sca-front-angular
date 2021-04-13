@@ -55,6 +55,7 @@ export class AppComponent implements OnInit {
         items: [
           { label: 'Permissão', icon: 'pi pi-key', command: () => { this.clicked('permissao'); } },
           { label: 'Usuário', icon: 'pi pi-users', command: () => { this.clicked('user'); } },
+          { label: 'Pesquisa', icon: 'pi pi-search', command: () => { this.clicked('pesquisa'); } },
         ]
       },
       {

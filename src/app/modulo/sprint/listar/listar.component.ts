@@ -112,7 +112,9 @@ export class ListarComponent implements OnInit {
             Swal.fire({
               title: 'Encaminhamento realizado',
               icon: 'info',
-            })
+            });
+
+            this.carregarGrid();
           },
           (error: any) => {
             this.errorMensagem.mostrarError('', error);

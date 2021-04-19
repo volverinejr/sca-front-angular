@@ -26,6 +26,25 @@
           </div>
 
           <div class="p-field">
+            <label for="field-responsavel">Responsável</label>
+            <p-dropdown
+              formControlName="responsavel"
+              id="field-responsavel"
+              [options]="responsaveis"
+              placeholder="&nbsp;"
+              optionLabel="userName"
+              [showClear]="true"
+            ></p-dropdown>
+
+            <p-message
+              severity="error"
+              text="{{ getErrorResponsavel() }}"
+              *ngIf="form.controls.responsavel.invalid && form.controls.responsavel.dirty"
+            ></p-message>
+          </div>
+
+
+          <div class="p-field">
             <label for="field-observacao">Observação</label>
             <textarea
               pInputTextarea

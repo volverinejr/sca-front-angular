@@ -19,6 +19,7 @@ export class EditarComponent implements OnInit {
   carregando: boolean = false;
 
   fases: any[];
+  responsaveis: any[];
   idSprint: number;
   idSolicitacao: number;
   idFase: number;
@@ -47,6 +48,8 @@ export class EditarComponent implements OnInit {
           this.idFase = params['idfase'];
 
           this.carregarFases();
+
+          this.carregarResponsavel();
         }
       );
 
@@ -57,6 +60,7 @@ export class EditarComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(''),
       fase: new FormControl('', Validators.required),
+      responsavel: new FormControl('', Validators.required),
       observacao: new FormControl(''),
       finalizada: new FormControl(false),
     });
@@ -65,6 +69,12 @@ export class EditarComponent implements OnInit {
   //------Mensagem Validação
   getErrorFase() {
     if (this.form.controls.fase.hasError('required')) {
+      return 'Campo Requerido';
+    }
+    return '';
+  }
+  getErrorResponsavel() {
+    if (this.form.controls.responsavel.hasError('required')) {
       return 'Campo Requerido';
     }
     return '';
@@ -123,10 +133,25 @@ export class EditarComponent implements OnInit {
         this.form.patchValue(response);
 
         this.form.get("fase").setValue(this.fases.find(f => f.id === response.fase.id));
+        this.form.get("responsavel").setValue(this.responsaveis.find(f => f.id === response.responsavel.id));
       },
       (error: any) => {
         this.errorMensagem.mostrarError('', error);
       }
     );
   }
+
+
+  protected carregarResponsavel() {
+    this.service.findByResponsavel(this.idSprint, this.idSolicitacao).subscribe(
+      (res: any) => {
+        this.responsaveis = res;
+      },
+      (error: any) => {
+        this.errorMensagem.mostrarError('', error);
+        this.router.navigate(['']);
+      }
+    );
+  }
+
 }

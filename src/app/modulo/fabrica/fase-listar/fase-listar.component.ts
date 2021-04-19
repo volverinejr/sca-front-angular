@@ -84,6 +84,7 @@ export class FaseListarComponent implements OnInit {
 
     this.service.FindByFasesDaSolicitacao(this.id, this.idsolicitacao, this.pagNumero, this.pagQtd, this.pagCampo, this.pagOrdem).subscribe(
       (res: any) => {
+
         this.dataSouce = res.content;
         this.totalRecords = res.totalElements;
 

@@ -14,6 +14,7 @@ export class NovoComponent implements OnInit {
   form: FormGroup;
   carregando: boolean = false;
   fases: any[];
+  responsaveis: any[];
   idSprint: number;
   idSolicitacao: number;
 
@@ -38,11 +39,14 @@ export class NovoComponent implements OnInit {
     this.iniciarForm();
 
     this.carregarFases();
+
+    this.carregarResponsavel();
   }
 
   iniciarForm() {
     this.form = new FormGroup({
       fase: new FormControl('', Validators.required),
+      responsavel: new FormControl('', Validators.required),
       observacao: new FormControl(''),
       finalizada: new FormControl(false),
     });
@@ -51,6 +55,12 @@ export class NovoComponent implements OnInit {
   //------Mensagem Validação
   getErrorFase() {
     if (this.form.controls.fase.hasError('required')) {
+      return 'Campo Requerido';
+    }
+    return '';
+  }
+  getErrorResponsavel() {
+    if (this.form.controls.responsavel.hasError('required')) {
       return 'Campo Requerido';
     }
     return '';
@@ -86,6 +96,20 @@ export class NovoComponent implements OnInit {
     this.serviceFase.findAll(0, 100, 'id', '1', '').subscribe(
       (res: any) => {
         this.fases = res.content;
+      },
+      (error: any) => {
+        this.errorMensagem.mostrarError('', error);
+        this.router.navigate(['']);
+      }
+    );
+  }
+
+
+
+  protected carregarResponsavel() {
+    this.service.findByResponsavel(this.idSprint, this.idSolicitacao).subscribe(
+      (res: any) => {
+        this.responsaveis = res;
       },
       (error: any) => {
         this.errorMensagem.mostrarError('', error);

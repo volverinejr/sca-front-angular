@@ -140,7 +140,8 @@ export class FabricaService {
   }
 
 
-
-
+  findByResponsavel(idSprint: number, idSolicitacao: number) {
+    return this.http.get<any>(`${env.API_TICKET}${this.pathBase}/sprint/${idSprint}/solicitacao/${idSolicitacao}/responsavel`).pipe(take(1));
+  }
 
 }

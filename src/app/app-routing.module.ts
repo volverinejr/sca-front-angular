@@ -4,6 +4,7 @@ import { AnaliseListarGuard } from './modulo/analise/guard/analise-listar.guard'
 import { ClienteListarGuard } from './modulo/cliente/guard/cliente-listar.guard';
 import { FabricaListarGuard } from './modulo/fabrica/guard/fabrica-listar.guard';
 import { FaseListarGuard } from './modulo/fase/guard/fase-listar.guard';
+import { PerfilListarGuard } from './modulo/perfil/guard/perfil-listar.guard';
 import { PermissaoListarGuard } from './modulo/permissao/guard/permissao-listar.guard';
 import { PesquisaListarGuard } from './modulo/pesquisa/guard/pesquisa-listar.guard';
 import { SistemaListarGuard } from './modulo/sistema/guard/sistema-listar.guard';
@@ -82,6 +83,12 @@ const routes: Routes = [
     loadChildren: () => import('./modulo/pesquisa/pesquisa.module').then(m => m.PesquisaModule),
     canLoad: [PesquisaListarGuard],
     canActivate: [PesquisaListarGuard],
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./modulo/perfil/perfil.module').then(m => m.PerfilModule),
+    canLoad: [PerfilListarGuard],
+    canActivate: [PerfilListarGuard],
   },
 
 ];

@@ -14,7 +14,15 @@ import { TimeListarComponent } from './time-listar/time-listar.component';
 
 
 @NgModule({
-  declarations: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent, TimeListarComponent],
+  declarations: [
+    ListarComponent,
+    NovoComponent,
+    DetalheComponent,
+    EditarComponent,
+    SistemaListarComponent,
+    PermissaoListarComponent,
+    TimeListarComponent,
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -22,6 +30,14 @@ import { TimeListarComponent } from './time-listar/time-listar.component';
     AppCommonModule,
     UserRoutingModule,
   ],
-  exports: [ListarComponent, NovoComponent, DetalheComponent, EditarComponent, SistemaListarComponent, PermissaoListarComponent, TimeListarComponent],
+  exports: [
+    ListarComponent,
+    NovoComponent,
+    DetalheComponent,
+    EditarComponent,
+    SistemaListarComponent,
+    PermissaoListarComponent,
+    TimeListarComponent,
+  ],
 })
 export class UserModule { }

@@ -1,6 +1,4 @@
 <span *ngIf="autenticado()">
-  <h2 *ngIf="ambiente">Ambiente {{ ambiente }}</h2>
-
   <p-menubar [model]="items">
     <ng-template pTemplate="start">
       <img src="assets/images/Logo_GR_menor.png" height="40" class="p-mr-2" />
@@ -31,5 +29,5 @@
     </div>
   </p-menubar>
 </span>
-
+<img *ngIf="ambiente" src="assets/images/desenvolvimento.png" style="position: absolute;top: 10;right: 0;border: 0;" alt="Ambiente Desenvolvimento" width="150">
 <router-outlet> </router-outlet>

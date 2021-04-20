@@ -1,24 +1,35 @@
 <span *ngIf="autenticado()">
-
-  <h2 *ngIf="ambiente">Ambiente {{ambiente}}</h2>
-
+  <h2 *ngIf="ambiente">Ambiente {{ ambiente }}</h2>
 
   <p-menubar [model]="items">
     <ng-template pTemplate="start">
-      <img src="assets/images/Logo_GR_menor.png" height="40" class="p-mr-2">
+      <img src="assets/images/Logo_GR_menor.png" height="40" class="p-mr-2" />
     </ng-template>
 
     <div class="p-toolbar-group-right">
-      <p-chip label="{{getNomeUsuario()}}" styleClass="p-mr-2 custom-chip" image="assets/images/amyelsner.png"></p-chip>
+      <p-chip
+        label="{{ getNomeUsuario() }}"
+        styleClass="p-mr-2 custom-chip"
+        image="assets/images/amyelsner.png"
+        (click)="perfil()"
+      ></p-chip>
 
-      <i class="pi pi-bell p-mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>
+      <i
+        class="pi pi-bell p-mr-4 p-text-secondary"
+        pBadge
+        style="font-size: 2rem"
+        value="2"
+      ></i>
 
-      <button type="button" class="p-button-raised p-button-danger" pButton icon="pi pi-sign-out"
-        (click)="logout()"></button>
+      <button
+        type="button"
+        class="p-button-raised p-button-danger"
+        pButton
+        icon="pi pi-sign-out"
+        (click)="logout()"
+      ></button>
     </div>
-
   </p-menubar>
-
 </span>
 
 <router-outlet> </router-outlet>

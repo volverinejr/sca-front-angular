@@ -22,6 +22,9 @@ export class UserService {
     return this.http.put(`${env.API_TICKET}${this.pathBase}`, model).pipe(take(1));
   }
 
+  public updateSenha(model: any) {
+    return this.http.patch(`${env.API_TICKET}${this.pathBase}`, model).pipe(take(1));
+  }
 
   public findAll(pagina, qtd, campo, ordem, filtro) {
     let aplicandoFiltro = '';

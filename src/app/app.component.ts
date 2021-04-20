@@ -36,6 +36,10 @@ export class AppComponent implements OnInit {
     this.carregarMenu();
   }
 
+  perfil(){
+    this.router.navigate(['perfil']);
+  }
+
   carregarMenu() {
     this.items = [
       {
